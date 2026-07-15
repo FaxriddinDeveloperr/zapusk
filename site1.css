@@ -254,6 +254,41 @@ html, body {
   line-height: 1.32;
 }
 
+/* ---------- Navigation ---------- */
+.nav {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 24px;
+  padding: 16px 0;
+}
+.nav-link {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #1a1a1a;
+  border: 2px solid #333;
+  color: #666;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+.nav-link.active {
+  background: linear-gradient(180deg, #FF2B2B, #E00000);
+  border-color: #FF2B2B;
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(255,30,30,.4);
+}
+.nav-link:hover:not(.active) {
+  background: #2a2a2a;
+  border-color: #444;
+  color: #888;
+}
+
 /* ---------- Modal theme (red) ---------- */
 body {
   --modal-accent: #E00000;

@@ -237,6 +237,41 @@ html, body {
   color: #1C1C1C;
 }
 
+/* ---------- Navigation ---------- */
+.nav {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 24px;
+  padding: 16px 0;
+}
+.nav-link {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #f5f5f5;
+  border: 2px solid #ddd;
+  color: #999;
+  font-family: 'Anton', sans-serif;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+.nav-link.active {
+  background: linear-gradient(180deg, #2E74E8, #1B54C7);
+  border-color: #2E74E8;
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(46,116,232,.4);
+}
+.nav-link:hover:not(.active) {
+  background: #fff;
+  border-color: #eee;
+  color: #aaa;
+}
+
 /* ---------- Modal theme (blue) ---------- */
 body {
   --modal-accent: #2E74E8;
