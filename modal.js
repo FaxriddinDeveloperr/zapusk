@@ -34,7 +34,7 @@
     '          <option value="+44">🇬🇧 +44</option>',
     '          <option value="+49">🇩🇪 +49</option>',
     '        </select>',
-    '        <input type="tel" id="mPhone" name="phone" placeholder="90 123 45 67" autocomplete="tel" inputmode="tel">',
+    '        <input type="tel" id="mPhone" name="phone" placeholder="90 123 45 67" autocomplete="tel" inputmode="numeric" maxlength="9">',
     '      </div>',
     '      <span class="err" data-for="mPhone">To\'g\'ri telefon raqam kiriting</span>',
     '    </div>',
@@ -64,6 +64,11 @@
   overlay.addEventListener("click", function (e) { if (e.target === overlay) close(); });
   document.addEventListener("keydown", function (e) { if (e.key === "Escape") close(); });
 
+  // Telefon maydoniga faqat raqam kiritiladi, uzunligi 9 xonadan oshmaydi
+  phoneEl.addEventListener("input", function () {
+    phoneEl.value = phoneEl.value.replace(/\D/g, "").slice(0, 9);
+  });
+
   function showErr(el, on) {
     el.classList.toggle("invalid", on);
     var err = overlay.querySelector('.err[data-for="' + el.id + '"]');
@@ -71,16 +76,12 @@
   }
 
   function validPhone(v) {
-    var digits = (v.match(/\d/g) || []).length;
-    return digits >= 7;
+    return v.length === 9;
   }
 
-  // Tanlangan davlat kodi + kiritilgan raqamdan to'liq raqam yasaymiz.
-  // Foydalanuvchi raqamni "+998..." deb to'liq yozgan bo'lsa, o'sha holicha olamiz.
+  // Tanlangan davlat kodi + kiritilgan 9 xonali raqamdan to'liq raqam yasaymiz.
   function fullPhone() {
-    var v = phoneEl.value.trim();
-    if (v.charAt(0) === "+") return v;
-    return codeEl.value + " " + v;
+    return codeEl.value + " " + phoneEl.value.trim();
   }
 
   form.addEventListener("submit", function (e) {
@@ -123,4 +124,29 @@
       done();
     }
   });
+
+  // ---- Countdown taymer (1:59 dan boshlab pastga sanaydi, 0 da to'xtaydi) ----
+  var timerEl = document.querySelector(".timer");
+  if (timerEl) {
+    var boxes = timerEl.querySelectorAll(".timer-box");
+    var secondsLeft = 119; // 1:59
+
+    var renderTimer = function () {
+      var mm = String(Math.floor(secondsLeft / 60)).padStart(2, "0");
+      var ss = String(secondsLeft % 60).padStart(2, "0");
+      if (boxes.length === 2) {
+        boxes[0].textContent = mm;
+        boxes[1].textContent = ss;
+      } else {
+        timerEl.textContent = mm + ":" + ss;
+      }
+    };
+
+    renderTimer();
+    var timerInterval = setInterval(function () {
+      if (secondsLeft <= 0) { clearInterval(timerInterval); return; }
+      secondsLeft--;
+      renderTimer();
+    }, 1000);
+  }
 })();
