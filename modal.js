@@ -104,7 +104,7 @@
     // Ma'lumotni brauzer xotirasiga ham saqlaymiz (thanks sahifasi uchun)
     try { localStorage.setItem("lead", JSON.stringify(payload)); } catch (_) {}
 
-    function done() { window.location.href = "thanks.html"; }
+    function done() { window.location.href = "/thanks.html"; }
 
     if (SHEETS_URL && SHEETS_URL.indexOf("http") === 0) {
       // URL parameter method'i - no-cors muammosini hal qiladi
