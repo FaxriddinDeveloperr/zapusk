@@ -1,22 +1,6 @@
 {
   "rewrites": [
     {
-      "source": "/",
-      "destination": "/site1.html"
-    },
-    {
-      "source": "/site1",
-      "destination": "/site1.html"
-    },
-    {
-      "source": "/site2",
-      "destination": "/site2.html"
-    },
-    {
-      "source": "/site3",
-      "destination": "/site3.html"
-    },
-    {
       "source": "/thanks",
       "destination": "/thanks.html"
     }
