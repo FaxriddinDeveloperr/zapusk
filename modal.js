@@ -1,7 +1,7 @@
 /* ================= Shared modal + Google Sheets submit ================= */
 (function () {
   // ⬇️ DEPLOY qilingan Google Apps Script Web App URL'ini shu yerga qo'ying:
-  var SHEETS_URL = "https://script.google.com/macros/s/AKfycbwkI9Qymp-80vARM_NBreqx3sy22CFK5x9Fv2cJKaj-P1KadW7JgDue3rW21tZ1RSA/exec";
+  var SHEETS_URL = "https://script.google.com/macros/s/AKfycbxS0ZPuqESlzG1grg4I3KDWIQMr_FTCq0tqTEXXxFgFw8TOX-_Bm9c6bfg8STrdmvipFA/exec";
 
   // Modal HTML'ni sahifaga qo'shamiz
   var overlay = document.createElement("div");
@@ -19,7 +19,23 @@
     '    </div>',
     '    <div class="field">',
     '      <label for="mPhone">Telefon raqamingiz</label>',
-    '      <input type="tel" id="mPhone" name="phone" placeholder="+998 90 123 45 67" autocomplete="tel" inputmode="tel">',
+    '      <div class="phone-row">',
+    '        <select id="mCode" class="phone-code" aria-label="Davlat kodi">',
+    '          <option value="+998" selected>🇺🇿 +998</option>',
+    '          <option value="+7">🇷🇺 +7</option>',
+    '          <option value="+7">🇰🇿 +7</option>',
+    '          <option value="+996">🇰🇬 +996</option>',
+    '          <option value="+992">🇹🇯 +992</option>',
+    '          <option value="+993">🇹🇲 +993</option>',
+    '          <option value="+82">🇰🇷 +82</option>',
+    '          <option value="+90">🇹🇷 +90</option>',
+    '          <option value="+971">🇦🇪 +971</option>',
+    '          <option value="+1">🇺🇸 +1</option>',
+    '          <option value="+44">🇬🇧 +44</option>',
+    '          <option value="+49">🇩🇪 +49</option>',
+    '        </select>',
+    '        <input type="tel" id="mPhone" name="phone" placeholder="90 123 45 67" autocomplete="tel" inputmode="tel">',
+    '      </div>',
     '      <span class="err" data-for="mPhone">To\'g\'ri telefon raqam kiriting</span>',
     '    </div>',
     '    <button type="submit" class="modal-submit">YUBORISH</button>',
@@ -32,6 +48,7 @@
   var form    = overlay.querySelector(".modal-form");
   var nameEl  = overlay.querySelector("#mName");
   var phoneEl = overlay.querySelector("#mPhone");
+  var codeEl  = overlay.querySelector("#mCode");
   var submit  = overlay.querySelector(".modal-submit");
   var closeBtn= overlay.querySelector(".modal-close");
 
@@ -55,7 +72,15 @@
 
   function validPhone(v) {
     var digits = (v.match(/\d/g) || []).length;
-    return digits >= 9;
+    return digits >= 7;
+  }
+
+  // Tanlangan davlat kodi + kiritilgan raqamdan to'liq raqam yasaymiz.
+  // Foydalanuvchi raqamni "+998..." deb to'liq yozgan bo'lsa, o'sha holicha olamiz.
+  function fullPhone() {
+    var v = phoneEl.value.trim();
+    if (v.charAt(0) === "+") return v;
+    return codeEl.value + " " + v;
   }
 
   form.addEventListener("submit", function (e) {
@@ -71,7 +96,7 @@
 
     var payload = {
       name:  nameEl.value.trim(),
-      phone: phoneEl.value.trim(),
+      phone: fullPhone(),
       page:  document.title,
       time:  new Date().toISOString()
     };

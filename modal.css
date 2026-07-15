@@ -89,6 +89,27 @@
   box-shadow: 0 0 0 3px color-mix(in srgb, var(--modal-accent,#2E74E8) 18%, transparent);
 }
 .field input.invalid { border-color: #E23A2E; }
+
+/* Telefon: davlat kodi tanlagichi + raqam maydoni yonma-yon */
+.phone-row { display: flex; gap: 8px; }
+.phone-row input { flex: 1 1 auto; min-width: 0; }
+.phone-code {
+  flex: 0 0 auto;
+  border: 1.5px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 13px 8px;
+  font-size: 15px;
+  font-family: 'Roboto',sans-serif;
+  color: #1c1c1c;
+  background: #fff;
+  outline: none;
+  cursor: pointer;
+  transition: border-color .15s ease-out, box-shadow .15s ease-out;
+}
+.phone-code:focus {
+  border-color: var(--modal-accent, #2E74E8);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--modal-accent,#2E74E8) 18%, transparent);
+}
 .field .err { color: #E23A2E; font-size: 11.5px; margin-top: 5px; display: none; font-family:'Roboto',sans-serif; }
 .field .err.show { display: block; }
 
