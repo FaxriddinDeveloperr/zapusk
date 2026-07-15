@@ -199,52 +199,67 @@ html, body {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 35px; /* Ikonkalar keyingi bloklarga tegib ketmasligi uchun masofani kattalashtirdik */
-  padding: 0 14px;
+  gap: 12px;
+  padding: 0 22px;
 }
 
 .ecard {
   position: relative;
-  background: #f0f2f5; /* Rasmga mos och kulrang/oqish rang */
-  border: none;
-  border-radius: 20px;
-  padding: 38px 20px 28px; /* Tepa va pastki ichki masofalar */
-  text-align: center;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); /* Blok uchun mayin soya */
+  height: 127px;
 }
 
-/* pastki blue bar (Rasmga 1-ga-1 variant) */
-.ecard::after {
-  content: "";
+.ecard-box {
   position: absolute;
-  left: 40px;
-  right: 40px;
-  bottom: 0;
-  height: 6px; /* Ko'k chiziq qalinligi */
-  background: #1e63e9; /* Rasmga mos yorqin ko'k rang */
-  border-radius: 3px 3px 0 0; /* Ustki uchlari biroz yumaloq */
+  top: 26px;
+  left: 0;
+  right: 0;
+  height: 95px;
+  box-sizing: border-box;
+  background: #EFEFEF; /* Figma: gray box fill */
+  border-radius: 14px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 32px 30px 12px;
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 345 95'%3E%3Cpath d='M0,0 H134.5 C153.5,0 153.5,22 172.5,22 C191.5,22 191.5,0 210.5,0 H345 V95 H0 Z' fill='black'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 345 95'%3E%3Cpath d='M0,0 H134.5 C153.5,0 153.5,22 172.5,22 C191.5,22 191.5,0 210.5,0 H345 V95 H0 Z' fill='black'/%3E%3C/svg%3E");
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+}
+
+/* Figma: ko'k rounded rect, quti ostida yashiringan, faqat pastki qirrasi (radius bilan) ko'rinadi */
+.ecard-accent {
+  position: absolute;
+  top: 85px;
+  left: 30px;
+  width: 285px;
+  height: 42px;
+  border-radius: 14px;
+  background: #276AFC;
 }
 
 /* tepa markazdagi qizil doira icon */
 .ec-icon {
   position: absolute;
-  top: -24px; /* O'rtada chiroyli turishi uchun biroz teparoq surdik */
+  top: -4px;
   left: 50%;
   transform: translateX(-50%);
-  width: 48px;
-  height: 48px;
-  background: linear-gradient(180deg, #ff1e00, #e60000); /* To'q qizil gradient */
+  width: 44px;
+  height: 44px;
+  background: #FF0000; /* Figma: solid red fill */
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 6px 14px rgba(230, 0, 0, 0.35); /* Qizil soya */
   z-index: 2; /* Boshqa elementlardan tepada turishi uchun */
 }
 
-.ec-icon svg {
-  width: 22px;
-  height: 22px;
+.ec-icon svg,
+.ec-icon img {
+  width: 20px;
+  height: 20px;
 }
 
 .ecard p {
@@ -252,6 +267,7 @@ html, body {
   font-size: 14px;
   line-height: 1.5;
   margin: 0;
+  text-align: center;
 }
 
 .ecard p b {
