@@ -18,7 +18,22 @@
 
 function doPost(e) {
   try {
-    var data = JSON.parse(e.postData.contents);
+    // Debug logging
+    Logger.log("Request received: " + JSON.stringify(e));
+    Logger.log("PostData: " + JSON.stringify(e.postData));
+    
+    var data;
+    if (e.postData && e.postData.contents) {
+      data = JSON.parse(e.postData.contents);
+    } else if (e.parameter) {
+      // URL parameter orqali kelgan data
+      data = e.parameter;
+    } else {
+      throw new Error("No data received");
+    }
+    
+    Logger.log("Parsed data: " + JSON.stringify(data));
+    
     var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheets()[0];
 
     // Sarlavha qatori (faqat birinchi marta)
@@ -34,17 +49,52 @@ function doPost(e) {
     sheet.getRange(row, 3).setNumberFormat('@').setValue(String(data.phone || ''));
     sheet.getRange(row, 4).setValue(String(data.page || ''));
 
+    Logger.log("Data written successfully");
+    
     return ContentService
       .createTextOutput(JSON.stringify({ ok: true }))
       .setMimeType(ContentService.MimeType.JSON);
   } catch (err) {
+    Logger.log("Error: " + String(err));
     return ContentService
       .createTextOutput(JSON.stringify({ ok: false, error: String(err) }))
       .setMimeType(ContentService.MimeType.JSON);
   }
 }
 
-// Brauzerda URL'ni ochib test qilish uchun (ixtiyoriy)
-function doGet() {
-  return ContentService.createTextOutput('Lead endpoint ishlayapti ✅');
+// GET method uchun (URL parameter orqali data yuborish)
+function doGet(e) {
+  try {
+    // Debug logging
+    Logger.log("GET Request received: " + JSON.stringify(e));
+    Logger.log("Parameters: " + JSON.stringify(e.parameter));
+    
+    var data = e.parameter;
+    
+    Logger.log("Parsed data: " + JSON.stringify(data));
+    
+    var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheets()[0];
+
+    // Sarlavha qatori (faqat birinchi marta)
+    if (sheet.getLastRow() === 0) {
+      sheet.appendRow(['Vaqt', 'Ism', 'Telefon', 'Sahifa']);
+    }
+
+    var row = sheet.getLastRow() + 1;
+    sheet.getRange(row, 1).setValue(new Date());
+    sheet.getRange(row, 2).setValue(String(data.name || ''));
+    sheet.getRange(row, 3).setNumberFormat('@').setValue(String(data.phone || ''));
+    sheet.getRange(row, 4).setValue(String(data.page || ''));
+
+    Logger.log("Data written successfully via GET");
+    
+    return ContentService
+      .createTextOutput(JSON.stringify({ ok: true }))
+      .setMimeType(ContentService.MimeType.JSON);
+  } catch (err) {
+    Logger.log("GET Error: " + String(err));
+    return ContentService
+      .createTextOutput(JSON.stringify({ ok: false, error: String(err) }))
+      .setMimeType(ContentService.MimeType.JSON);
+  }
 }

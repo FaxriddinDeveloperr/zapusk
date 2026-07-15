@@ -1,7 +1,7 @@
 /* ================= Shared modal + Google Sheets submit ================= */
 (function () {
   // ⬇️ DEPLOY qilingan Google Apps Script Web App URL'ini shu yerga qo'ying:
-  var SHEETS_URL = "https://script.google.com/macros/s/AKfycbwevAOljS5LOxc2DreAOGyPD6ngHY4Os2UG65tI1x8M2Q3sVANswy2Dx9Sh1DQquSuT4Q/exec";
+  var SHEETS_URL = "https://script.google.com/macros/s/AKfycbwkI9Qymp-80vARM_NBreqx3sy22CFK5x9Fv2cJKaj-P1KadW7JgDue3rW21tZ1RSA/exec";
 
   // Modal HTML'ni sahifaga qo'shamiz
   var overlay = document.createElement("div");
@@ -82,11 +82,15 @@
     function done() { window.location.href = "thanks.html"; }
 
     if (SHEETS_URL && SHEETS_URL.indexOf("http") === 0) {
-      fetch(SHEETS_URL, {
-        method: "POST",
-        mode: "no-cors",
-        headers: { "Content-Type": "text/plain;charset=utf-8" },
-        body: JSON.stringify(payload)
+      // URL parameter method'i - no-cors muammosini hal qiladi
+      var url = SHEETS_URL + "?name=" + encodeURIComponent(payload.name) + 
+                 "&phone=" + encodeURIComponent(payload.phone) + 
+                 "&page=" + encodeURIComponent(payload.page) +
+                 "&time=" + encodeURIComponent(payload.time);
+      
+      fetch(url, {
+        method: "GET",
+        mode: "no-cors"
       }).then(done).catch(done);
     } else {
       // URL hali sozlanmagan — baribir thank you sahifasiga o'tamiz
