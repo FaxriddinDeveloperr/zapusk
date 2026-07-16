@@ -33,7 +33,7 @@ html, body {
 
 /* ---------- Top bar ---------- */
 .topbar {
-  background-image: url('assets/site2/topbar-shape.png');
+  background-image: url('/assets/site2/topbar-shape.avif');
   background-size: 100% 100%;
   background-repeat: no-repeat;
   background-position: center;
@@ -120,7 +120,7 @@ html, body {
   aspect-ratio: 390 / 170;
   border: none;
   border-radius: 0;
-  background: url('assets/site2/cta-button.png') center / 100% 100% no-repeat;
+  background: url('/assets/site2/cta-button.avif') center / 100% 100% no-repeat;
   box-shadow: none;
   transition: transform .16s ease-out, filter .16s ease-out;
 }
@@ -244,40 +244,6 @@ html, body {
 }
 .cta-hint svg { width: 34px; height: 26px; }
 
-/* ---------- Navigation ---------- */
-.nav {
-  display: flex;
-  justify-content: center;
-  gap: 12px;
-  margin-top: 24px;
-  padding: 16px 0;
-}
-.nav-link {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background: #f5f5f5;
-  border: 2px solid #ddd;
-  color: #999;
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 18px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-  transition: all 0.2s ease;
-}
-.nav-link.active {
-  background: linear-gradient(180deg, #ED1E79, #E5197F);
-  border-color: #ED1E79;
-  color: #fff;
-  box-shadow: 0 4px 12px rgba(237,30,121,.4);
-}
-.nav-link:hover:not(.active) {
-  background: #fff;
-  border-color: #eee;
-  color: #aaa;
-}
 
 /* ---------- Modal theme (pink/yellow) ---------- */
 body {

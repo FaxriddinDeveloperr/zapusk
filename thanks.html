@@ -2,98 +2,54 @@
 <html lang="uz">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Rahmat! — Ro'yxatdan o'tdingiz</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Oxirgi qadam qoldi!</title>
 <style>
-  * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
-  html,body { background:#0f1220; font-family:'Roboto',sans-serif; }
-  .phone {
-    width:100%; max-width:390px; min-height:100vh; margin:0 auto;
-    background:linear-gradient(180deg,#132a63 0%,#0e1b3d 100%);
-    display:flex; flex-direction:column; align-items:center; justify-content:center;
-    text-align:center; padding:40px 26px; position:relative; overflow:hidden;
-  }
-  .glow { position:absolute; width:340px; height:340px; border-radius:50%;
-    background:radial-gradient(circle,rgba(46,116,232,.35),transparent 65%);
-    top:-40px; left:50%; transform:translateX(-50%); }
-  .check-badge {
-    width:104px; height:104px; border-radius:50%;
-    background:linear-gradient(180deg,#38C172,#2FA45E);
-    display:flex; align-items:center; justify-content:center;
-    box-shadow:0 16px 40px rgba(47,164,94,.45);
-    position:relative; z-index:2;
-    animation:pop .45s cubic-bezier(.16,1,.3,1) both;
-  }
-  .check-badge svg { width:56px; height:56px; }
-  .check-badge svg polyline {
-    stroke-dasharray:60; stroke-dashoffset:60;
-    animation:draw .5s .25s ease-out forwards;
-  }
-  h1 {
-    font-family:'Bebas Neue','Anton',sans-serif; color:#fff;
-    font-size:40px; letter-spacing:1px; margin-top:26px; line-height:1;
-    position:relative; z-index:2;
-    animation:rise .5s .1s cubic-bezier(.16,1,.3,1) both;
-  }
-  .sub { color:#c7d3ee; font-size:15px; line-height:1.5; margin-top:14px; max-width:300px;
-    position:relative; z-index:2; animation:rise .5s .18s cubic-bezier(.16,1,.3,1) both; }
-  .sub b { color:#fff; }
-  .info {
-    margin-top:26px; background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.12);
-    border-radius:16px; padding:16px 20px; color:#dfe7f7; font-size:14px; line-height:1.6;
-    position:relative; z-index:2; width:100%; max-width:320px;
-    animation:rise .5s .26s cubic-bezier(.16,1,.3,1) both;
-  }
-  .info .row { display:flex; justify-content:space-between; gap:12px; }
-  .info .row + .row { margin-top:6px; }
-  .info .k { color:#93a4cc; } .info .v { color:#fff; font-weight:600; }
-  .home {
-    margin-top:30px; text-decoration:none; color:#fff;
-    font-family:'Bebas Neue','Anton',sans-serif; font-size:22px; letter-spacing:1px;
-    background:linear-gradient(180deg,#2E74E8,#1B54C7); padding:16px 40px; border-radius:40px;
-    box-shadow:0 12px 28px rgba(30,80,200,.45); position:relative; z-index:2;
-    animation:rise .5s .32s cubic-bezier(.16,1,.3,1) both;
-  }
-  @keyframes pop { from{opacity:0; transform:scale(.6);} to{opacity:1; transform:scale(1);} }
-  @keyframes draw { to{ stroke-dashoffset:0; } }
-  @keyframes rise { from{opacity:0; transform:translateY(14px);} to{opacity:1; transform:translateY(0);} }
-  @media (prefers-reduced-motion:reduce){
-    .check-badge,.check-badge svg polyline,h1,.sub,.info,.home{animation:none;}
-    .check-badge svg polyline{stroke-dashoffset:0;}
-  }
+@font-face{font-family:"Bebas Neue";src:url(/fonts/BebasNeue-Regular.woff2) format('woff2');font-weight:400;font-style:normal;font-display:swap}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif}
+.header{background-color:#ebe8e3;min-height:100vh;padding-top:180px}
+.header-container{margin:0 auto;max-width:671px;width:100%;display:flex;padding:0 20px}
+.hero-left{max-width:903px;width:100%;display:flex;flex-direction:column;align-items:center}
+.hero-title{font-family:"Bebas Neue",sans-serif;font-weight:400;font-size:96px;line-height:100%;text-align:center;margin-bottom:25px;text-transform:uppercase;max-width:622px}
+.hero-text{font-weight:500;font-size:clamp(17px,5vw,29px);line-height:150%;margin-bottom:58px;max-width:522px;text-align:center}
+.hero-text>a{color:#ff0000;text-decoration:none}
+.hero-btn-box{max-width:585px;width:100%}
+.hero-img{display:flex;align-items:center;justify-content:center;margin:0 auto 46px}
+.hero-img svg{display:block;height:119px;width:auto}
+.hero-btn{display:flex;align-items:center;justify-content:center;font-family:"Bebas Neue",sans-serif;font-weight:400;font-size:64px;line-height:100%;text-align:center;padding:39px 0 38px;background-color:#039BE5;box-shadow:0 5px 0 0 #006393;color:#fff;border-radius:30px;max-width:585px;width:100%;border:none;text-transform:uppercase;margin-bottom:42px;text-decoration:none;max-height:142px}
+.error-msg{display:none;color:#c00;font-size:14px;text-align:center;margin-top:10px}
+@media (max-width:500px){
+.header{padding-top:30%}
+.hero-left{display:block}
+.header-container{margin:0 auto;text-align:center;padding:0 10px}
+.hero-title{font-size:40px;margin-bottom:5px}
+.hero-img{margin-bottom:24px;height:69px}
+.hero-img svg{height:69px}
+.hero-btn{font-size:32px;padding:23px 0 20px;border-radius:30px;max-width:345px;margin:0 auto 25px}
+}
 </style>
 </head>
 <body>
-  <main class="phone">
-    <div class="glow"></div>
-    <div class="check-badge">
-      <svg viewBox="0 0 48 48" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
-        <polyline points="12 25 21 34 37 15"/>
-      </svg>
+  <section class="header">
+    <div class="header-container">
+      <div class="hero-left">
+        <h1 class="hero-title">oxirgi qadam qoldi!</h1>
+        <p class="hero-text">
+          Bepul darsni qo'lga kiritish uchun <br> quyidagi tugma orqali telegram kanalga <a href="#">obuna bo'ling</a>
+        </p>
+        <div class="hero-btn-box">
+          <span class="hero-img" aria-hidden="true">
+            <svg width="16" height="119" viewBox="0 0 16 119" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M7.2929 118.707C7.68342 119.098 8.31659 119.098 8.70711 118.707L15.0711 112.343C15.4616 111.953 15.4616 111.319 15.0711 110.929C14.6805 110.538 14.0474 110.538 13.6569 110.929L8.00001 116.586L2.34315 110.929C1.95263 110.538 1.31946 110.538 0.928937 110.929C0.538413 111.319 0.538413 111.953 0.928937 112.343L7.2929 118.707ZM8 0L7 4.37114e-08L7.00001 118L8.00001 118L9.00001 118L9 -4.37114e-08L8 0Z" fill="black"/>
+            </svg>
+          </span>
+          <a href="#" class="hero-btn thankYouBtn">obuna bo'lish</a>
+          <p class="error-msg" id="errorMessage">Yuborishda xatolik. Iltimos, birozdan so'ng qayta urinib ko'ring.</p>
+        </div>
+      </div>
     </div>
-    <h1>RAHMAT!</h1>
-    <p class="sub">Siz muvaffaqiyatli <b>ro'yxatdan o'tdingiz</b>. Webinar havolasi va eslatma tez orada telefoningizga yuboriladi.</p>
-
-    <div class="info" id="info" style="display:none">
-      <div class="row"><span class="k">Ism</span><span class="v" id="vName">—</span></div>
-      <div class="row"><span class="k">Telefon</span><span class="v" id="vPhone">—</span></div>
-    </div>
-
-    <a class="home" href="/">BOSH SAHIFA</a>
-  </main>
-
-  <script>
-    try {
-      var lead = JSON.parse(localStorage.getItem("lead") || "null");
-      if (lead) {
-        document.getElementById("vName").textContent  = lead.name  || "—";
-        document.getElementById("vPhone").textContent = lead.phone || "—";
-        document.getElementById("info").style.display = "block";
-      }
-    } catch (e) {}
-  </script>
+  </section>
+  <script src="/js/thankYou.js" defer></script>
 </body>
 </html>
